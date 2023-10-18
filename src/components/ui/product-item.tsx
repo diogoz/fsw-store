@@ -41,7 +41,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
               </p>
             </>
           ) : (
-            <p className="text-xs line-through opacity-75">
+            <p className="font-semibold">
               R${Number(product.basePrice).toFixed(2)}
             </p>
           )}
