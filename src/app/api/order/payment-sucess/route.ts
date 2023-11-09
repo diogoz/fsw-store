@@ -28,16 +28,16 @@ export const POST = async (request: Request) => {
         expand: ["line_items"],
       },
     );
-
+    const lineItems = sessionWithLineItems.line_items;
       // atualizar pedido
       await prismaClient.order.update({
         where: {
-          id: session.metadata.orderId
+          id: session.metadata.orderId,
         },
         data: {
-          status: 'PAYMENT_CONFIRMED'
-        }
-      })
+          status: "PAYMENT_CONFIRMED",
+        },
+      });
   }
 
   return NextResponse.json({ recieved: true });

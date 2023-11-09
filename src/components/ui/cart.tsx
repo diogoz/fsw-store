@@ -19,7 +19,7 @@ const Cart = () => {
     if (!data?.user){
       return;
     }
-    const order = await createOrder(products, (data.user as any).id);
+    const order = await createOrder(products, (data?.user as any).id);
 
     const checkout = await createCheckout(products, order.id);
 
