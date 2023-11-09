@@ -1,7 +1,12 @@
+"use server";
+
 import { prismaClient } from "@/lib/prisma";
 import { CartProduct } from "../providers/cart";
 
-export const createOrder = async(cartProducts: CartProduct[], userId: string) => {
+export const createOrder = async (
+  cartProducts: CartProduct[],
+  userId: string,
+) => {
   const order = await prismaClient.order.create({
     data: {
       userId,
@@ -12,11 +17,12 @@ export const createOrder = async(cartProducts: CartProduct[], userId: string) =>
             basePrice: product.basePrice,
             discountPercentage: product.discountPercentage,
             productId: product.id,
-            quantity: product.quantity
+            quantity: product.quantity,
           })),
         },
       },
     },
   });
+
   return order;
-}
+};
