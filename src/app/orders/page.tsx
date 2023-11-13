@@ -11,7 +11,12 @@ const OrdersPage = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
-    return <p className="text-red-600">Acesso negado. Faça o Login para acessar essa página</p>
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-2 p-5">
+        <h2 className="font-bold">Acesso Negado!</h2>
+        <p className="text-sm opacity-60">Faça Login para ver seus pedidos</p>
+      </div>
+    );
   }
 
   const orders = await prismaClient.order.findMany({
