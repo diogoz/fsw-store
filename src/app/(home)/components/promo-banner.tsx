@@ -1,8 +1,9 @@
 import Image, { ImageProps } from "next/image";
-const PromoBanner = ({ alt, ...props }: ImageProps) => {
+import { cn } from "@/lib/utils";
+const PromoBanner = ({ alt, className, ...props }: ImageProps) => {
   return (
     <Image
-      className="h-auto w-full px-5"
+    className={cn("h-auto w-full px-5", className)}
       sizes="100vw"
       alt={alt}
       width={0}
