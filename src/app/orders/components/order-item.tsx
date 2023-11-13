@@ -1,7 +1,12 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import {  Prisma } from "@prisma/client";
-import {format} from 'date-fns'
+import { Prisma } from "@prisma/client";
+import { format } from "date-fns";
 import OrderProductItem from "./order-product.item";
 import { Separator } from "@/components/ui/separator";
 import { useMemo } from "react";
@@ -12,13 +17,13 @@ interface OrdemItemProps {
   order: Prisma.OrderGetPayload<{
     include: {
       orderProducts: {
-        include: {product: true}
-      }
-    }
-  }>
+        include: { product: true };
+      };
+    };
+  }>;
 }
 
-const OrderItem =  async({order} : OrdemItemProps) => {
+const OrderItem = async ({ order }: OrdemItemProps) => {
   const subtotal = useMemo(() => {
     return order.orderProducts.reduce((acc, orderProduct) => {
       return (
@@ -40,39 +45,46 @@ const OrderItem =  async({order} : OrdemItemProps) => {
   return (
     <Card className="px-5">
       <Accordion type="single" className="w-full" collapsible>
-    <AccordionItem value={order.id}>
-      <AccordionTrigger>
-        <div className="flex flex-col gap-1 text-left">
-          <p>Pedido com {order.orderProducts.length} produto(s)</p>
+        <AccordionItem value={order.id}>
+          <AccordionTrigger>
+            <div className="flex flex-col gap-1 text-left ">
+              <p className="font-bold uppercase">
+                Pedido com {order.orderProducts.length} produto(s)
+              </p>
               <span className="text-sm opacity-60">
                 Feito em {format(order.createdAt, "d/MM/y 'às' HH:mm")}
               </span>
-        </div>
-      </AccordionTrigger>
+            </div>
+          </AccordionTrigger>
 
-      <AccordionContent>
-      <div className="flex flex-col">
-        <div className="flex items-center justify-between p-5">
-          <div className="font-bold">
-            <p className="uppercase">Status</p>
-            <p className="text-primary">{getOrderStatus(order.status)}</p>
-          </div>
+          <AccordionContent>
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between p-5">
+                <div className="font-bold">
+                  <p className="uppercase">Status</p>
+                  <p className="text-primary">{getOrderStatus(order.status)}</p>
+                </div>
 
-          <div> 
-            <p className="font-bold uppercase">Data</p>
-            <p className="opacity-60">{format(order.createdAt, "d/MM/y")}</p>
-          </div>
+                <div>
+                  <p className="font-bold uppercase">Data</p>
+                  <p className="opacity-60">
+                    {format(order.createdAt, "d/MM/y")}
+                  </p>
+                </div>
 
-          <div> 
-            <p className="font-bold uppercase">Pagamento</p>
-            <p className="opacity-60">Cartão</p>
-          </div>
-        </div>
+                <div>
+                  <p className="font-bold uppercase">Pagamento</p>
+                  <p className="opacity-60">Cartão</p>
+                </div>
+              </div>
 
-        {order.orderProducts.map(orderProduct => (
-          <OrderProductItem  key={orderProduct.id} orderProduct={orderProduct}/>
-        ))}
-         <div className="flex w-full flex-col gap-1 text-xs mt-5">
+              {order.orderProducts.map((orderProduct) => (
+                <OrderProductItem
+                  key={orderProduct.id}
+                  orderProduct={orderProduct}
+                />
+              ))}
+              <div className="mt-5 flex w-full flex-col gap-1 text-xs">
                 <Separator />
 
                 <div className="flex w-full justify-between py-3">
@@ -101,13 +113,12 @@ const OrderItem =  async({order} : OrdemItemProps) => {
                   <p>R$ {total.toFixed(2)}</p>
                 </div>
               </div>
-      
-      </div>
-    </AccordionContent>
-    </AccordionItem>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
       </Accordion>
-    </Card> 
-   );
-}
- 
+    </Card>
+  );
+};
+
 export default OrderItem;
