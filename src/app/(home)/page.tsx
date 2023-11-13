@@ -72,7 +72,7 @@ export default async function Home() {
           <Link href="/category/headphones" className="flex flex-1">
             <PromoBanner
               src="/banner-home-03.png"
-              alt="Até 55% de desconto em fones!"
+              alt="Até 20% de desconto em fones!"
               className="hidden w-0 flex-1 lg:block"
             />
           </Link>
@@ -87,7 +87,7 @@ export default async function Home() {
           <Link href="/category/headphones">
             <PromoBanner
               src="/banner-home-03.png"
-              alt="Até 55% de desconto em mouses!"
+              alt="Até 20% de desconto em fones!"
               className="px-5 lg:hidden"
             />
           </Link>
