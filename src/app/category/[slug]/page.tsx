@@ -18,7 +18,7 @@ const CategoryProducts = async ({ params }: any) => {
   }
 
   return (
-    <div className="flex flex-col gap-8 p-5">
+    <div className=" flex flex-col gap-8 p-5 lg:container lg:gap-10 lg:py-10">
       <Badge
         className="w-fit gap-1 border-2 px-3 py-[0.375rem] text-base uppercase"
         variant="outline"

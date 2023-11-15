@@ -31,14 +31,14 @@ const ProductItem = ({ product, className }: ProductItemProps) => {
         )}
       </div>
         <div className="flex flex-col gap-1">
-        <p className="truncate text-sm">{product.name}</p>
+        <p className="truncate text-sm lg:text-lg">{product.name}</p>
           <div className="flex items-center gap-2">
             {product.discountPercentage > 0 ? (
               <>
                 <p className="truncate font-semibold">
                   R${product.totalPrice.toFixed(2)}
                 </p>
-                <p className="truncate text-xs line-through opacity-75">
+                <p className="truncate text-xs line-through opacity-75 lg:text-lg">
                 R$ {Number(product.basePrice).toFixed(2)}
               </p>
               </>
