@@ -33,7 +33,7 @@ const OrdersPage = async () => {
   })
 
   return ( 
-    <div className="p-5">
+    <div className="p-5 lg:container lg:mx-auto lg:py-10">
         <Badge
         className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase mb-4"
         variant="outline"
